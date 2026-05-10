@@ -11,18 +11,8 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <div
-      className="group rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-1"
-      style={{
-        background: 'var(--bg3)',
-        border: '1px solid rgba(255,255,255,0.08)',
-        boxShadow: '0 0 0 0 rgba(249,115,22,0)',
-      }}
-      onMouseEnter={(e) => {
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(249,115,22,0.25)'
-      }}
-      onMouseLeave={(e) => {
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.08)'
-      }}
+      className="group rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-1 border border-white/[0.08] hover:border-orange-500/[0.25]"
+      style={{ background: 'var(--bg3)' }}
     >
       <Link href={`/catalog/${product.slug}`}>
         <div

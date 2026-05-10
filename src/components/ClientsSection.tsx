@@ -28,19 +28,8 @@ export default async function ClientsSection() {
           {(clients as Client[]).map((client) => (
             <div
               key={client.id}
-              className="rounded-xl p-4 flex items-center justify-center min-h-[68px] transition-all duration-200"
-              style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
-              }}
-              onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.06)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(249,115,22,0.2)'
-              }}
-              onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.03)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)'
-              }}
+              className="rounded-xl p-4 flex items-center justify-center min-h-[68px] transition-all duration-200 border border-white/[0.07] hover:bg-white/[0.06] hover:border-orange-500/[0.2]"
+              style={{ background: 'rgba(255,255,255,0.03)' }}
             >
               {client.logo_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
