@@ -1,9 +1,9 @@
 'use server'
 
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/server'
 
 export async function submitOrder(formData: FormData) {
-  const supabase = await createClient()
+  const supabase = await createAdminClient()
 
   const company_name = (formData.get('company_name') as string)?.trim()
   const contact_name = (formData.get('contact_name') as string)?.trim()
