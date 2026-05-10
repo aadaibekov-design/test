@@ -17,13 +17,12 @@ export default async function FeaturedProducts() {
   if (!products?.length) return null
 
   return (
-    <section id="catalog" className="py-24" style={{ background: 'var(--bg)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+    <section id="catalog" className="py-24" style={{ background: 'var(--bg3)' }}>
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-5">
           <div>
-            <p className="text-orange-500 text-sm font-semibold uppercase tracking-widest mb-3">
-              Каталог
-            </p>
+            <div className="eyebrow">Каталог</div>
             <h2 className="section-title">Популярные товары</h2>
             <p className="section-subtitle">Самые востребованные позиции для корпоративного мерча</p>
           </div>
@@ -37,6 +36,7 @@ export default async function FeaturedProducts() {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
+
       </div>
     </section>
   )

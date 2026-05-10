@@ -12,15 +12,14 @@ export default async function ClientsSection() {
   if (!clients?.length) return null
 
   return (
-    <section id="clients" className="py-24" style={{ background: 'var(--bg)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="clients" className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+
         <div className="text-center mb-14">
-          <p className="text-orange-500 text-sm font-semibold uppercase tracking-widest mb-3">
-            Клиенты
-          </p>
+          <div className="eyebrow">Клиенты</div>
           <h2 className="section-title">Нам доверяют</h2>
           <p className="section-subtitle">
-            Крупнейшие компании России выбирают Union для своего мерча
+            Крупнейшие компании России выбирают Union Industry для своего мерча
           </p>
         </div>
 
@@ -28,20 +27,19 @@ export default async function ClientsSection() {
           {(clients as Client[]).map((client) => (
             <div
               key={client.id}
-              className="rounded-xl p-4 flex items-center justify-center min-h-[68px] transition-all duration-200 border border-white/[0.07] hover:bg-white/[0.06] hover:border-orange-500/[0.2]"
-              style={{ background: 'rgba(255,255,255,0.03)' }}
+              className="rounded-xl p-4 flex items-center justify-center min-h-[68px] border border-black/[0.07] hover:border-black/[0.15] hover:bg-[#F7F5F2] transition-all duration-200"
             >
               {client.logo_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={client.logo_url}
                   alt={client.name}
-                  className="max-h-7 w-auto object-contain opacity-50 hover:opacity-90 transition-opacity"
+                  className="max-h-7 w-auto object-contain opacity-40 hover:opacity-70 transition-opacity"
                 />
               ) : (
                 <span
-                  className="text-sm font-bold text-gray-500"
-                  style={{ letterSpacing: '-0.02em' }}
+                  className="text-xs font-bold text-[#A8A8A8]"
+                  style={{ letterSpacing: '-0.01em' }}
                 >
                   {client.name}
                 </span>
@@ -49,6 +47,7 @@ export default async function ClientsSection() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   )

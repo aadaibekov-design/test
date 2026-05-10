@@ -1,24 +1,18 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { formatPrice } from '@/lib/utils'
 
 export default function ProductCard({ product }: { product: Product }) {
   const image =
     product.images?.[0] ||
-    `https://placehold.co/400x400/0f0f24/ffffff?text=${encodeURIComponent(product.name)}`
+    `https://placehold.co/400x400/EDEAE4/0A0A0A?text=${encodeURIComponent(product.name)}`
 
   return (
-    <div
-      className="group rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-1 border border-white/[0.08] hover:border-orange-500/[0.25]"
-      style={{ background: 'var(--bg3)' }}
-    >
+    <div className="group bg-white rounded-2xl overflow-hidden border border-black/[0.07] hover:border-black/[0.15] hover:-translate-y-1 transition-all duration-200 hover:shadow-xl hover:shadow-black/[0.07]">
       <Link href={`/catalog/${product.slug}`}>
-        <div
-          className="relative aspect-square overflow-hidden"
-          style={{ background: 'rgba(255,255,255,0.03)' }}
-        >
+        <div className="relative aspect-square overflow-hidden bg-[#F4F2EE]">
           <Image
             src={image}
             alt={product.name}
@@ -27,44 +21,42 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         </div>
       </Link>
+
       <div className="p-5">
         <span
-          className="text-xs font-semibold text-orange-500 uppercase"
-          style={{ letterSpacing: '0.08em' }}
+          className="text-[10px] font-bold text-[#D4500A] uppercase"
+          style={{ letterSpacing: '0.1em' }}
         >
           {product.category}
         </span>
+
         <Link href={`/catalog/${product.slug}`}>
           <h3
-            className="mt-1.5 font-bold text-white group-hover:text-orange-400 transition-colors"
+            className="mt-1.5 font-bold text-[#0A0A0A] group-hover:text-[#D4500A] transition-colors leading-snug"
             style={{ letterSpacing: '-0.02em' }}
           >
             {product.name}
           </h3>
         </Link>
+
         {product.short_description && (
-          <p className="mt-2 text-sm text-gray-500 line-clamp-2 leading-relaxed">
+          <p className="mt-2 text-sm text-[#5A5A5A] line-clamp-2 leading-relaxed">
             {product.short_description}
           </p>
         )}
-        <div
-          className="mt-4 flex items-center justify-between pt-4"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}
-        >
+
+        <div className="mt-4 flex items-center justify-between pt-4 border-t border-black/[0.06]">
           <div>
-            <span className="text-xs text-gray-500">от</span>
-            <span
-              className="ml-1 text-lg font-black text-white"
-              style={{ letterSpacing: '-0.04em' }}
-            >
+            <span className="text-xs text-[#A8A8A8]">от </span>
+            <span className="text-lg font-black text-[#0A0A0A]" style={{ letterSpacing: '-0.04em' }}>
               {formatPrice(product.base_price)}
             </span>
           </div>
           <Link
             href={`/catalog/${product.slug}`}
-            className="inline-flex items-center gap-1 text-sm font-semibold text-orange-500 hover:text-orange-400 transition-colors"
+            className="w-8 h-8 rounded-full bg-[#0A0A0A] flex items-center justify-center text-white hover:bg-[#D4500A] transition-colors"
           >
-            Подробнее <ArrowRight size={13} />
+            <ArrowUpRight size={14} />
           </Link>
         </div>
       </div>

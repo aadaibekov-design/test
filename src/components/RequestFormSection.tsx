@@ -22,74 +22,69 @@ export default function RequestFormSection() {
   }
 
   return (
-    <section id="request" className="py-24 relative overflow-hidden" style={{ background: 'var(--bg2)' }}>
-      {/* orange glow */}
+    <section id="request" className="py-24 bg-[#0A0A0A] relative overflow-hidden">
+      {/* Subtle texture */}
       <div
-        className="absolute top-0 left-0 w-[500px] h-[400px] pointer-events-none"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-          transform: 'translate(-20%, -20%)',
+          backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
         }}
         aria-hidden
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
           {/* Left */}
-          <div>
-            <p className="text-orange-500 text-sm font-semibold uppercase tracking-widest mb-4">
+          <div className="pt-2">
+            <div className="text-[#D4500A] text-xs font-bold uppercase tracking-[0.12em] mb-4">
               Заявка
-            </p>
+            </div>
             <h2
-              className="text-3xl md:text-4xl font-black text-white leading-tight"
-              style={{ letterSpacing: '-0.04em' }}
+              className="font-black text-white leading-tight"
+              style={{ fontSize: 'clamp(2.25rem, 4vw, 3.25rem)', letterSpacing: '-0.045em' }}
             >
               Готовы обсудить<br />ваш проект?
             </h2>
-            <p className="mt-4 text-gray-400 text-lg leading-relaxed" style={{ letterSpacing: '-0.01em' }}>
+            <p className="mt-5 text-white/50 text-base leading-relaxed" style={{ letterSpacing: '-0.01em' }}>
               Оставьте заявку — менеджер свяжется в течение 2 часов и подготовит персональное предложение.
             </p>
-            <ul className="mt-7 space-y-3">
-              {[
-                'Расчёт стоимости бесплатно',
-                'Предложение от 3 вариантов',
-                'Без обязательств',
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-gray-300 text-sm">
-                  <CheckCircle size={15} className="text-orange-500 shrink-0" />
+
+            <ul className="mt-8 space-y-3">
+              {['Расчёт стоимости бесплатно', 'Предложение от 3 вариантов', 'Без обязательств'].map((item) => (
+                <li key={item} className="flex items-center gap-3 text-white/60 text-sm">
+                  <div className="w-5 h-5 rounded-full bg-[#D4500A]/20 border border-[#D4500A]/30 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle size={11} color="#D4500A" />
+                  </div>
                   {item}
                 </li>
               ))}
             </ul>
+
+            {/* Brand mark */}
+            <div className="mt-16 border-t border-white/[0.07] pt-8">
+              <div className="flex flex-col leading-none">
+                <span className="font-black text-white/20 text-2xl tracking-[0.06em] uppercase">Union</span>
+                <span className="font-light text-white/15 text-xs uppercase" style={{ letterSpacing: '0.18em' }}>Industry</span>
+              </div>
+            </div>
           </div>
 
           {/* Right — form */}
-          <div
-            className="rounded-2xl p-8"
-            style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.1)',
-            }}
-          >
+          <div className="rounded-2xl p-8 border border-white/[0.09]" style={{ background: 'rgba(255,255,255,0.04)' }}>
             {success ? (
-              <div className="text-center py-8">
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-                  style={{ background: 'rgba(52,211,153,0.12)', border: '1px solid rgba(52,211,153,0.25)' }}
-                >
-                  <CheckCircle size={28} color="#34d399" />
+              <div className="text-center py-10">
+                <div className="w-14 h-14 rounded-full bg-[#D4500A]/15 border border-[#D4500A]/25 flex items-center justify-center mx-auto mb-5">
+                  <CheckCircle size={26} color="#D4500A" />
                 </div>
-                <h3
-                  className="text-xl font-black text-white mb-2"
-                  style={{ letterSpacing: '-0.03em' }}
-                >
+                <h3 className="text-xl font-black text-white mb-2" style={{ letterSpacing: '-0.03em' }}>
                   Заявка отправлена!
                 </h3>
-                <p className="text-gray-400 text-sm">Мы свяжемся с вами в течение 2 часов.</p>
+                <p className="text-white/40 text-sm">Мы свяжемся с вами в течение 2 часов.</p>
                 <button
                   onClick={() => setSuccess(false)}
-                  className="mt-6 text-sm text-orange-500 hover:text-orange-400 font-medium transition-colors"
+                  className="mt-6 text-sm text-[#D4500A] hover:text-orange-400 font-medium transition-colors"
                 >
                   Отправить ещё одну заявку
                 </button>
@@ -98,14 +93,14 @@ export default function RequestFormSection() {
               <form action={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                      Компания <span className="text-orange-500">*</span>
+                    <label className="block text-xs font-semibold text-white/40 mb-1.5 uppercase tracking-wider">
+                      Компания <span className="text-[#D4500A]">*</span>
                     </label>
                     <input name="company_name" required className="input" placeholder="ООО «Название»" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                      Контактное лицо <span className="text-orange-500">*</span>
+                    <label className="block text-xs font-semibold text-white/40 mb-1.5 uppercase tracking-wider">
+                      Контактное лицо <span className="text-[#D4500A]">*</span>
                     </label>
                     <input name="contact_name" required className="input" placeholder="Иван Иванов" />
                   </div>
@@ -113,27 +108,22 @@ export default function RequestFormSection() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                      Email <span className="text-orange-500">*</span>
+                    <label className="block text-xs font-semibold text-white/40 mb-1.5 uppercase tracking-wider">
+                      Email <span className="text-[#D4500A]">*</span>
                     </label>
                     <input name="email" type="email" required className="input" placeholder="ivan@company.ru" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1.5">Телефон</label>
+                    <label className="block text-xs font-semibold text-white/40 mb-1.5 uppercase tracking-wider">Телефон</label>
                     <input name="phone" type="tel" className="input" placeholder="+7 (999) 123-45-67" />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                    Что интересует? Тираж?
+                  <label className="block text-xs font-semibold text-white/40 mb-1.5 uppercase tracking-wider">
+                    Что интересует?
                   </label>
-                  <textarea
-                    name="notes"
-                    rows={3}
-                    className="input resize-none"
-                    placeholder="Например: 200 футболок с логотипом для корпоратива"
-                  />
+                  <textarea name="notes" rows={3} className="input resize-none" placeholder="Например: 200 худи с логотипом для корпоратива" />
                 </div>
 
                 {error && <p className="text-red-400 text-sm">{error}</p>}
@@ -141,19 +131,18 @@ export default function RequestFormSection() {
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="btn-primary-inv w-full py-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
-                  {isPending ? 'Отправляем...' : (
-                    <>Отправить заявку <ArrowRight size={16} /></>
-                  )}
+                  {isPending ? 'Отправляем...' : <><span>Отправить заявку</span><ArrowRight size={16} /></>}
                 </button>
 
-                <p className="text-xs text-gray-600 text-center">
+                <p className="text-xs text-white/20 text-center">
                   Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
                 </p>
               </form>
             )}
           </div>
+
         </div>
       </div>
     </section>
