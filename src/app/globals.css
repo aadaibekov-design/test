@@ -4,48 +4,62 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #0a0a0a;
+    --bg: #06060f;
+    --bg2: #0a0a1a;
+    --bg3: #0f0f24;
+    --border: rgba(255,255,255,0.08);
   }
 
-  * {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: #f1f5f9;
     -webkit-font-smoothing: antialiased;
   }
+
+  * { box-sizing: border-box; }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg transition-all duration-150;
+  }
+  .btn-primary:hover {
+    @apply bg-orange-600 -translate-y-px shadow-lg shadow-orange-500/30;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-colors;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/15 text-white font-semibold rounded-lg transition-all duration-150;
+  }
+  .btn-secondary:hover {
+    @apply bg-white/10 border-white/25;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-900 text-gray-900 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-colors;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-white/10 text-gray-300 font-semibold rounded-lg transition-all duration-150 text-sm;
+  }
+  .btn-outline:hover {
+    @apply bg-white/10 border-white/20 text-white;
   }
 
   .input {
-    @apply w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors;
+    @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/40 transition-colors;
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-gray-900;
+    @apply text-3xl md:text-4xl font-black text-white tracking-tight;
+    letter-spacing: -0.03em;
   }
 
   .section-subtitle {
-    @apply text-lg text-gray-500 mt-3;
+    @apply text-lg text-gray-400 mt-3 leading-relaxed;
+  }
+
+  .card-dark {
+    @apply bg-white/[0.04] border border-white/[0.08] rounded-2xl p-6 transition-all duration-200;
+  }
+  .card-dark:hover {
+    @apply bg-white/[0.07] border-white/[0.13];
   }
 }

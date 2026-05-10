@@ -29,33 +29,64 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 bg-gray-900">
+    <section id="how-it-works" className="py-24" style={{ background: 'var(--bg2)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Как мы работаем</h2>
-          <p className="mt-3 text-lg text-gray-400">
-            Простой процесс от заявки до получения готового мерча
+        <div className="text-center mb-16">
+          <p className="text-orange-500 text-sm font-semibold uppercase tracking-widest mb-3">
+            Процесс
           </p>
+          <h2 className="section-title">Как мы работаем</h2>
+          <p className="section-subtitle">Простой процесс от заявки до получения готового мерча</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((step, index) => (
-            <div key={step.number} className="relative">
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-orange-500/50 to-transparent z-0" />
-              )}
-              <div className="relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-orange-500 font-black text-3xl leading-none">{step.number}</span>
-                  <div className="bg-orange-500/10 text-orange-400 w-10 h-10 rounded-xl flex items-center justify-center">
-                    <step.icon size={18} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {steps.map((step, index) => {
+            const Icon = step.icon
+            return (
+              <div key={step.number} className="relative">
+                {index < steps.length - 1 && (
+                  <div
+                    className="hidden lg:block absolute top-8 left-full w-full h-px z-0"
+                    style={{
+                      background: 'linear-gradient(90deg, rgba(249,115,22,0.4), transparent)',
+                    }}
+                  />
+                )}
+                <div
+                  className="relative rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 cursor-default"
+                  style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                  }}
+                >
+                  <div className="flex items-center gap-3 mb-5">
+                    <span
+                      className="text-orange-500 font-black text-3xl leading-none"
+                      style={{ letterSpacing: '-0.05em' }}
+                    >
+                      {step.number}
+                    </span>
+                    <div
+                      className="w-9 h-9 rounded-xl flex items-center justify-center"
+                      style={{
+                        background: 'rgba(249,115,22,0.1)',
+                        border: '1px solid rgba(249,115,22,0.2)',
+                      }}
+                    >
+                      <Icon size={16} color="#fb923c" />
+                    </div>
                   </div>
+                  <h3
+                    className="font-bold text-white mb-2"
+                    style={{ letterSpacing: '-0.02em' }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-gray-400 leading-relaxed">{step.description}</p>
                 </div>
-                <h3 className="font-bold text-white mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{step.description}</p>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
