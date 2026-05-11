@@ -2,7 +2,16 @@
 
 import { revalidatePath } from 'next/cache'
 import { createAdminClient } from '@/lib/supabase/server'
+import { createClient } from '@supabase/supabase-js'
 import type { OrderStatus } from '@/lib/types'
+
+function createServiceClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { auth: { autoRefreshToken: false, persistSession: false } }
+  )
+}
 
 // --- Orders ---
 
@@ -91,7 +100,7 @@ export async function deleteProduct(id: string) {
 // --- Image Upload ---
 
 export async function uploadProductImage(formData: FormData) {
-  const supabase = await createAdminClient()
+  const supabase = createServiceClient()
   const file = formData.get('file') as File
 
   if (!file?.size) return { success: false, error: 'Файл не найден' }
