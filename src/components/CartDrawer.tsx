@@ -143,14 +143,14 @@ export default function CartDrawer() {
               </span>
             </div>
 
-            <a
-              href="/#request"
+            <Link
+              href="/checkout"
               onClick={closeCart}
               className="btn-primary w-full py-3.5"
             >
               Оформить заявку
               <ArrowRight size={15} />
-            </a>
+            </Link>
 
             <button
               onClick={clearCart}
