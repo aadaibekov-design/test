@@ -88,6 +88,27 @@ export async function deleteProduct(id: string) {
   revalidatePath('/catalog')
 }
 
+// --- Image Upload ---
+
+export async function uploadProductImage(formData: FormData) {
+  const supabase = await createAdminClient()
+  const file = formData.get('file') as File
+
+  if (!file?.size) return { success: false, error: 'Файл не найден' }
+
+  const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg'
+  const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
+
+  const { error } = await supabase.storage
+    .from('products')
+    .upload(filename, file, { contentType: file.type, upsert: false })
+
+  if (error) return { success: false, error: error.message }
+
+  const { data } = supabase.storage.from('products').getPublicUrl(filename)
+  return { success: true, url: data.publicUrl }
+}
+
 // --- Clients ---
 
 export async function createClient_action(formData: FormData) {

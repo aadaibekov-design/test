@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import type { Product } from '@/lib/types'
 import { CATEGORIES } from '@/lib/types'
+import ImageUploader from './ImageUploader'
 
 interface Props {
   product?: Product
@@ -14,8 +15,6 @@ export default function ProductForm({ product, onSubmit }: Props) {
   const router = useRouter()
   const [error, setError] = useState('')
   const [isPending, startTransition] = useTransition()
-
-  const defaultImages = product?.images?.join('\n') ?? ''
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -91,16 +90,10 @@ export default function ProductForm({ product, onSubmit }: Props) {
         </div>
 
         <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
-            URL изображений <span className="text-gray-400 text-xs font-normal">(по одному на строку)</span>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Фотографии товара
           </label>
-          <textarea
-            name="images"
-            rows={3}
-            defaultValue={defaultImages}
-            className="input resize-none text-sm font-mono"
-            placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"
-          />
+          <ImageUploader initialUrls={product?.images ?? []} />
         </div>
 
         <div className="flex items-center gap-6">
