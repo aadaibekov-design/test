@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
-import { X, Loader2, ImagePlus } from 'lucide-react'
+import { X, Loader2, ImagePlus, ChevronLeft, ChevronRight } from 'lucide-react'
 import { uploadProductImage } from '@/app/admin/actions'
 
 interface Props {
@@ -117,6 +117,18 @@ export default function ImageUploader({ initialUrls = [] }: Props) {
     setItems((prev) => prev.filter((i) => i.id !== id))
   }
 
+  function moveItem(id: string, dir: -1 | 1) {
+    setItems((prev) => {
+      const idx = prev.findIndex((i) => i.id === id)
+      if (idx < 0) return prev
+      const next = idx + dir
+      if (next < 0 || next >= prev.length) return prev
+      const arr = [...prev]
+      ;[arr[idx], arr[next]] = [arr[next], arr[idx]]
+      return arr
+    })
+  }
+
   return (
     <div className="space-y-3">
       {/* Hidden textarea for form submission */}
@@ -156,18 +168,38 @@ export default function ImageUploader({ initialUrls = [] }: Props) {
                 </div>
               )}
 
-              {!item.uploading && (
-                <button
-                  type="button"
-                  onClick={() => removeItem(item.id)}
-                  className="absolute top-1 right-1 w-5 h-5 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500"
-                >
-                  <X size={10} />
-                </button>
+              {!item.uploading && !item.error && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => removeItem(item.id)}
+                    className="absolute top-1 right-1 w-5 h-5 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500"
+                  >
+                    <X size={10} />
+                  </button>
+                  {idx > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => moveItem(item.id, -1)}
+                      className="absolute bottom-1 left-1 w-5 h-5 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black"
+                    >
+                      <ChevronLeft size={11} />
+                    </button>
+                  )}
+                  {idx < items.filter(i => !i.uploading && !i.error).length - 1 && (
+                    <button
+                      type="button"
+                      onClick={() => moveItem(item.id, 1)}
+                      className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black"
+                    >
+                      <ChevronRight size={11} />
+                    </button>
+                  )}
+                </>
               )}
 
               {idx === 0 && !item.uploading && !item.error && (
-                <div className="absolute bottom-1 left-1 bg-black/60 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+                <div className="absolute top-1 left-1 bg-[#D4500A] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">
                   Главное
                 </div>
               )}

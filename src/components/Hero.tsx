@@ -101,7 +101,7 @@ export default function Hero() {
                 <div className="text-[#0A0A0A]/40 text-sm mb-4">Брендированный, от 50 шт.</div>
                 <div className="flex items-center justify-between">
                   <span className="font-black text-[#0A0A0A] text-lg" style={{ letterSpacing: '-0.04em' }}>
-                    от 850 ₽
+                    от 850 ₸
                   </span>
                   <div className="w-8 h-8 rounded-full bg-[#0A0A0A] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <ArrowUpRight size={14} color="white" />
@@ -127,7 +127,7 @@ export default function Hero() {
                 <div className="font-black text-[#0A0A0A] text-xl" style={{ letterSpacing: '-0.04em' }}>
                   Футболка
                 </div>
-                <div className="text-[#0A0A0A]/40 text-sm mt-0.5">от 420 ₽</div>
+                <div className="text-[#0A0A0A]/40 text-sm mt-0.5">от 420 ₸</div>
               </div>
             </div>
 
@@ -148,7 +148,7 @@ export default function Hero() {
                 <div className="font-black text-[#0A0A0A] text-xl" style={{ letterSpacing: '-0.04em' }}>
                   Кепка
                 </div>
-                <div className="text-[#0A0A0A]/40 text-sm mt-0.5">от 340 ₽</div>
+                <div className="text-[#0A0A0A]/40 text-sm mt-0.5">от 340 ₸</div>
               </div>
             </div>
 
@@ -181,7 +181,7 @@ export default function Hero() {
 
               <div className="flex items-center gap-4 relative z-10">
                 <span className="font-black text-[#0A0A0A] text-lg" style={{ letterSpacing: '-0.04em' }}>
-                  от 520 ₽
+                  от 520 ₸
                 </span>
                 <Link
                   href="/catalog"

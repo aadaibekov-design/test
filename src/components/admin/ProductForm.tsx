@@ -55,7 +55,7 @@ export default function ProductForm({ product, onSubmit }: Props) {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1.5">
-            Цена от (₽) <span className="text-red-500">*</span>
+            Цена от (₸) <span className="text-red-500">*</span>
           </label>
           <input
             name="base_price"
@@ -84,7 +84,7 @@ export default function ProductForm({ product, onSubmit }: Props) {
             name="description"
             rows={4}
             defaultValue={product?.description ?? ''}
-            className="input resize-none"
+            className="input-light resize-none"
             placeholder="Подробное описание товара..."
           />
         </div>

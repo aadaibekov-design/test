@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle, ArrowRight } from 'lucide-react'
+import { ArrowLeft, CheckCircle } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { createClient } from '@/lib/supabase/server'
 import { formatPrice } from '@/lib/utils'
 import type { Product } from '@/lib/types'
 import ProductRequestForm from '@/components/ProductRequestForm'
+import ImageGallery from '@/components/ImageGallery'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -37,9 +37,9 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound()
 
   const p = product as Product
-  const mainImage =
-    p.images?.[0] ||
-    `https://placehold.co/800x800/EDEAE4/0A0A0A?text=${encodeURIComponent(p.name)}`
+  const allImages = p.images?.length
+    ? p.images
+    : [`https://placehold.co/800x800/EDEAE4/0A0A0A?text=${encodeURIComponent(p.name)}`]
 
   const perks = ['Бесплатный дизайн и макет', 'Минимальный тираж от 50 шт', 'Производство от 7 дней']
 
@@ -64,26 +64,8 @@ export default async function ProductPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
 
             {/* ── IMAGE COLUMN ── */}
-            <div className="space-y-3">
-              <div
-                className="relative aspect-square rounded-2xl overflow-hidden"
-                style={{ background: 'linear-gradient(150deg, #EDEAE4 0%, #E4E0D9 100%)' }}
-              >
-                <Image src={mainImage} alt={p.name} fill className="object-cover" />
-              </div>
-              {p.images.length > 1 && (
-                <div className="grid grid-cols-4 gap-2">
-                  {p.images.slice(1, 5).map((img, i) => (
-                    <div
-                      key={i}
-                      className="relative aspect-square rounded-xl overflow-hidden"
-                      style={{ background: '#EDEAE4' }}
-                    >
-                      <Image src={img} alt={`${p.name} ${i + 2}`} fill className="object-cover" />
-                    </div>
-                  ))}
-                </div>
-              )}
+            <div>
+              <ImageGallery images={allImages} name={p.name} />
             </div>
 
             {/* ── INFO COLUMN ── */}
