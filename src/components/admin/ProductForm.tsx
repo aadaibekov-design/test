@@ -38,14 +38,14 @@ export default function ProductForm({ product, onSubmit }: Props) {
           <label className="block text-sm font-medium text-gray-700 mb-1.5">
             Название <span className="text-red-500">*</span>
           </label>
-          <input name="name" required defaultValue={product?.name} className="input" placeholder="Футболка с принтом" />
+          <input name="name" required defaultValue={product?.name} className="input-light" placeholder="Футболка с принтом" />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1.5">
             Категория <span className="text-red-500">*</span>
           </label>
-          <select name="category" required defaultValue={product?.category || ''} className="input">
+          <select name="category" required defaultValue={product?.category || ''} className="input-light">
             <option value="" disabled>Выберите категорию</option>
             {CATEGORIES.map((cat) => (
               <option key={cat} value={cat}>{cat}</option>
@@ -63,7 +63,7 @@ export default function ProductForm({ product, onSubmit }: Props) {
             min="1"
             required
             defaultValue={product?.base_price}
-            className="input"
+            className="input-light"
             placeholder="350"
           />
         </div>
@@ -73,7 +73,7 @@ export default function ProductForm({ product, onSubmit }: Props) {
           <input
             name="short_description"
             defaultValue={product?.short_description ?? ''}
-            className="input"
+            className="input-light"
             placeholder="Хлопок 100%, шелкотрафарет или DTF печать"
           />
         </div>
