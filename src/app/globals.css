@@ -27,6 +27,11 @@
   ::selection { background: var(--ink); color: #fff; }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#0A0A0A] text-white font-semibold rounded-lg transition-all duration-150 text-sm;
