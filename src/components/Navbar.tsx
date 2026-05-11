@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import CartButton from './CartButton'
 
 const links = [
   { href: '/#catalog', label: 'Каталог' },
@@ -49,17 +50,21 @@ export default function Navbar() {
             >
               Весь каталог
             </Link>
+            <CartButton />
             <a href="#request" className="btn-primary py-2 px-5">
               Оставить заявку
             </a>
           </div>
 
-          <button
-            className="md:hidden text-[#0A0A0A]/60 hover:text-[#0A0A0A] p-2 transition-colors"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <X size={21} /> : <Menu size={21} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <CartButton />
+            <button
+              className="text-[#0A0A0A]/60 hover:text-[#0A0A0A] p-2 transition-colors"
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <X size={21} /> : <Menu size={21} />}
+            </button>
+          </div>
         </div>
       </div>
 

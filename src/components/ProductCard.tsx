@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowUpRight } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { formatPrice } from '@/lib/utils'
+import AddToCartButton from './AddToCartButton'
 
 export default function ProductCard({ product }: { product: Product }) {
   const image =
@@ -52,12 +52,16 @@ export default function ProductCard({ product }: { product: Product }) {
               {formatPrice(product.base_price)}
             </span>
           </div>
-          <Link
-            href={`/catalog/${product.slug}`}
-            className="w-8 h-8 rounded-full bg-[#0A0A0A] flex items-center justify-center text-white hover:bg-[#D4500A] transition-colors"
-          >
-            <ArrowUpRight size={14} />
-          </Link>
+          <AddToCartButton
+            item={{
+              id: product.id,
+              name: product.name,
+              slug: product.slug,
+              price: product.base_price,
+              image: product.images?.[0],
+              category: product.category,
+            }}
+          />
         </div>
       </div>
     </div>
